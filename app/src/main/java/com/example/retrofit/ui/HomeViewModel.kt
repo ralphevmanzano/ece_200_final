@@ -19,7 +19,8 @@ class HomeViewModel(private val repository: NewsRepository): ViewModel() {
     fun getNews() = viewModelScope.launch {
         newsResult.postValue(Result.Loading)
         try {
-            val response = repository.getNews("bitcoin", "c8b8bea1a52340278d6dee338bdaf09b")
+            // TODO: put your own query and API key from https://newsapi.org/account
+            val response = repository.getNews("", "")
             if (response.isSuccessful) {
                 newsResult.postValue(Result.Success(response.body()?.articles.orEmpty()))
             } else {
